@@ -5,6 +5,9 @@ authors = ["Provena Contributors"]
 language = "en"
 src = "src"
 
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
 [output.html]
 git-repository-url = "https://github.com/provenancai/provena"
-edit-url-template = "https://github.com/provenancai/provena/edit/main/docs/{path}"
+edit-url-template = "https://github.com/provenancai/provena/edit/main/docs/src/{path}"
