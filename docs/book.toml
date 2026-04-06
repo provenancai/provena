@@ -1,0 +1,10 @@
+[book]
+title = "Provena"
+description = "Open source provenance microkernel"
+authors = ["Provena Contributors"]
+language = "en"
+src = "src"
+
+[output.html]
+git-repository-url = "https://github.com/provenancai/provena"
+edit-url-template = "https://github.com/provenancai/provena/edit/main/docs/{path}"

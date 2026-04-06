@@ -15,6 +15,9 @@ Cargo.lock
 # macOS
 .DS_Store
 
+# mdbook build output
+docs/book/
+
 # Logs
 *.log
 
