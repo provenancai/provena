@@ -11,3 +11,4 @@ serde.workspace = true
 thiserror.workspace = true
 provena-core = { path = "../provena-core" }
 provena-sdk = { path = "../provena-sdk" }
+provena-ledger = { path = "../provena-ledger" }
