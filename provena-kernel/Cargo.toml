@@ -1,0 +1,13 @@
+[package]
+name = "provena-kernel"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+serde.workspace = true
+thiserror.workspace = true
+provena-core = { path = "../provena-core" }
+provena-sdk = { path = "../provena-sdk" }

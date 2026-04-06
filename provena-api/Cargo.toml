@@ -1,0 +1,11 @@
+[package]
+name = "provena-api"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+axum.workspace = true
+provena-kernel = { path = "../provena-kernel" }

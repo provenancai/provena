@@ -1,0 +1,26 @@
+# Rust
+/target/
+Cargo.lock
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Terraform (if infra lives here later)
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example

@@ -1,0 +1,16 @@
+[package]
+name = "prv"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+axum.workspace = true
+tokio.workspace = true
+provena-api = { path = "../provena-api" }
+provena-core = { path = "../provena-core" }
+provena-kernel = { path = "../provena-kernel" }
+provena-sdk = { path = "../provena-sdk" }
