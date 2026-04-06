@@ -4,6 +4,21 @@ Provena follows a hexagonal architecture with the kernel at the hub.
 
 The kernel knows three things: what capabilities exist, which plugins are healthy, and where to route requests. No business logic ever lives in the kernel. Everything that does work — including core services like the ledger — is a plugin.
 
+```mermaid
+flowchart TD
+    Client["Client (Postman / prv CLI)"] --> API[provena-api]
+    API --> Kernel[provena-kernel]
+    Kernel --> Ledger[Ledger plugin]
+    Kernel --> StorageA["Storage plugin A — Active"]
+    Kernel --> StorageB["Storage plugin B — Standby"]
+
+    subgraph platform[Platform crates]
+        SDK[provena-sdk]
+        Core[provena-core]
+        LedgerCrate[provena-ledger]
+    end
+```
+
 ## Provenance classes
 
 Every artifact and ledger entry carries a provenance class:
