@@ -11,12 +11,6 @@ flowchart TD
     Kernel --> Ledger[Ledger plugin]
     Kernel --> StorageA["Storage plugin A — Active"]
     Kernel --> StorageB["Storage plugin B — Standby"]
-
-    subgraph platform[Platform crates]
-        SDK[provena-sdk]
-        Core[provena-core]
-        LedgerCrate[provena-ledger]
-    end
 ```
 
 ## Provenance classes

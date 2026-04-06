@@ -11,3 +11,4 @@ command = "mdbook-mermaid"
 [output.html]
 git-repository-url = "https://github.com/provenancai/provena"
 edit-url-template = "https://github.com/provenancai/provena/edit/main/docs/src/{path}"
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
