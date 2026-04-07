@@ -35,3 +35,9 @@ cargo run -p prv
 ```
 
 That starts the minimal public API on `127.0.0.1:3000` with a `/health` endpoint.
+
+## License
+
+Provena is licensed under the Apache License 2.0.
+
+See the [LICENSE](./LICENSE) file for details.
