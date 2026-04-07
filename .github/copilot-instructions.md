@@ -39,6 +39,21 @@ provena-api     # Axum REST surface
 prv             # CLI binary
 ```
 
+## Git safety
+
+Do not perform the following operations autonomously — always seek explicit human confirmation first:
+
+- `git commit` (any form)
+- `git push` (any form)
+- `git merge`
+- `git rebase`
+- `git checkout` (branch switching or file restoration)
+- `git reset`
+- `git branch -D` / `git branch -d`
+- Any flag that forces or bypasses safety checks (`--force`, `-f`, `--no-verify`)
+
+Agents may freely perform read and stage operations: `git status`, `git diff`, `git log`, `git add`.
+
 ## Suggestions Copilot should avoid
 
 - Do not suggest `unwrap()`, `expect()`, or `todo!()` in library code
