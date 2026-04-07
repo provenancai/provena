@@ -1,0 +1,83 @@
+name: docs-pages
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/docs-pages.yml"
+      - "docs/**"
+      - "mdbook-strip-frontmatter/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".github/workflows/docs-pages.yml"
+      - "docs/**"
+      - "mdbook-strip-frontmatter/**"
+      - "Cargo.toml"
+      - "Cargo.lock"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache cargo artifacts
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: |
+            . -> target
+
+      - name: Install mdBook
+        run: cargo install mdbook --version 0.5.2 --locked
+
+      - name: Install mdbook-mermaid
+        run: cargo install mdbook-mermaid --version 0.17.0 --locked
+
+      - name: Prepare mermaid assets
+        run: mdbook-mermaid install docs
+
+      - name: Install strip-frontmatter preprocessor
+        run: cargo install --path mdbook-strip-frontmatter --locked
+
+      - name: Build documentation
+        run: mdbook build docs
+
+      - name: Configure Pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/book
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages-${{ github.ref }}
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
