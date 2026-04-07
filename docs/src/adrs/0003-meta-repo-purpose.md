@@ -1,27 +1,37 @@
+---
+id: "0003"
+title: "Meta-Repository Purpose"
+status: "Accepted"
+date: "2026-04-06"
+affects_repos: ["provena-workspace"]
+---
+
 # ADR 0003: Meta-Repository Purpose
 
-## Status
-Accepted
-
 ## Context
-Cross-repo decisions, workspace state, and local development tooling need a durable home that does not distort the code architecture.
+
+Local development tooling and workspace state need a home that does not distort the code architecture. At the same time, all architectural decisions that need to survive must live in `provena` — not in a working repo.
 
 ## Decision
-Use `provena-workspace` as a private meta-repository. It is not a Rust crate and must not become a dumping ground for shared code.
+
+`provena-workspace` is a private ephemeral working repository. It is not a Rust crate and must not become a dumping ground for shared code or architectural decisions.
 
 It may contain:
-- ADRs spanning multiple repositories
+
 - local VS Code workspace files
 - developer setup notes
 - local orchestration scripts
-- release coordination notes
+- scratch notes and working context
 
 It must not contain:
-- shared Rust code unless a deliberate new artifact is being created
+
+- shared Rust code
 - public platform contracts that belong in `provena`
 - commercial product implementation that belongs in `provenancai`
+- ADRs or architectural decisions — those belong in `provena`
 
 ## Consequences
-- Workspace context is preserved without polluting the public repo.
-- The name does not imply a reusable code dependency.
+
 - Repository boundaries remain explicit.
+- `provena` remains the single authoritative source for all architectural decisions.
+- `provena-workspace` can be discarded or recreated without loss of anything important.

@@ -1,0 +1,14 @@
+[package]
+name = "mdbook-strip-frontmatter"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "mdbook-strip-frontmatter"
+path = "src/main.rs"
+
+[dependencies]
+serde_json = { workspace = true }
+gray_matter = "0.3"

@@ -8,6 +8,9 @@ src = "src"
 [preprocessor.mermaid]
 command = "mdbook-mermaid"
 
+[preprocessor.strip-frontmatter]
+command = "/home/matthew/.cargo/bin/mdbook-strip-frontmatter"
+
 [output.html]
 git-repository-url = "https://github.com/provenancai/provena"
 edit-url-template = "https://github.com/provenancai/provena/edit/main/docs/src/{path}"

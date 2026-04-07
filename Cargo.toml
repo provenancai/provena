@@ -6,6 +6,7 @@ members = [
   "provena-ledger",
   "provena-api",
   "prv",
+  "mdbook-strip-frontmatter",
 ]
 resolver = "2"
 
