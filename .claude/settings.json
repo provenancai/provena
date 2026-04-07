@@ -13,7 +13,8 @@
       "Bash(mkdir -p*)",
       "Bash(cat*)",
       "Bash(touch*)",
-      "Bash(mdbook*)",
+      "Bash(mdbook build*)",
+      "Bash(mdbook test*)",
       "Bash(mdbook-mermaid*)",
       "Bash(mdbook-strip-frontmatter*)"
     ],
