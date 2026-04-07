@@ -19,18 +19,11 @@ on:
       - "Cargo.lock"
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -46,10 +39,10 @@ jobs:
             . -> target
 
       - name: Install mdBook
-        run: cargo install mdbook --locked
+        run: cargo install mdbook --version 0.5.2 --locked
 
       - name: Install mdbook-mermaid
-        run: cargo install mdbook-mermaid --locked
+        run: cargo install mdbook-mermaid --version 0.17.0 --locked
 
       - name: Install strip-frontmatter preprocessor
         run: cargo install --path mdbook-strip-frontmatter --locked
@@ -58,19 +51,25 @@ jobs:
         run: mdbook build docs
 
       - name: Configure Pages
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/book
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages-${{ github.ref }}
+      cancel-in-progress: true
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
