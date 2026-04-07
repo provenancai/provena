@@ -8,4 +8,6 @@ repository.workspace = true
 
 [dependencies]
 serde.workspace = true
+thiserror.workspace = true
+toml.workspace = true
 provena-core = { path = "../provena-core" }

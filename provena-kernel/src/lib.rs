@@ -269,7 +269,7 @@ impl Kernel {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use provena_core::{CapabilityName, PluginId, ProvenanceClass};
+    use provena_core::{CapabilityName, PluginId, ProvenanceClass, UserId};
     use provena_ledger::LedgerEntry;
     use provena_sdk::{CapabilityDescriptor, PluginManifest};
 
@@ -279,17 +279,21 @@ mod tests {
     }
 
     /// Convenience constructor for plugin manifests in tests.
+    ///
+    /// Uses a placeholder endpoint URL since routing HTTP requests is not
+    /// exercised by unit tests.
     fn manifest(
         id: PluginId,
         name: &str,
         capabilities: Vec<CapabilityDescriptor>,
     ) -> PluginManifest {
-        PluginManifest::new(id, name, capabilities)
+        PluginManifest::new(id, name, "http://localhost:0", capabilities)
     }
 
     /// Convenience constructor for a Human provenance ledger entry in tests.
     fn human_auth(actor: &str, summary: &str) -> LedgerEntry {
-        LedgerEntry::new(ProvenanceClass::Human, actor, summary).unwrap()
+        let user_id = UserId::new(actor).unwrap();
+        LedgerEntry::new(ProvenanceClass::Human, user_id, summary).unwrap()
     }
 
     /// Registering a second Active plugin for a singleton capability must be
@@ -491,8 +495,12 @@ mod tests {
             .unwrap();
 
         // Attempt cutover with a Machine provenance event — must be rejected.
-        let machine_auth =
-            LedgerEntry::new(ProvenanceClass::Machine, "automated-job", "auto cutover").unwrap();
+        let machine_auth = LedgerEntry::new(
+            ProvenanceClass::Machine,
+            UserId::new("automated-job").unwrap(),
+            "auto cutover",
+        )
+        .unwrap();
 
         let err = kernel
             .activate_capability(&storage, new_id, &machine_auth)

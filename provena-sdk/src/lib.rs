@@ -1,5 +1,18 @@
 use provena_core::{CapabilityName, PluginId};
 use serde::{Deserialize, Serialize};
+use thiserror::Error;
+
+/// Errors produced by the plugin SDK.
+#[derive(Debug, Error)]
+pub enum SdkError {
+    /// The `plugin.toml` file could not be parsed as a valid plugin manifest.
+    #[error("failed to parse plugin.toml: {0}")]
+    TomlParse(#[from] toml::de::Error),
+
+    /// A capability name in the manifest was invalid (e.g. empty).
+    #[error("invalid capability name in manifest: {0}")]
+    InvalidCapabilityName(#[from] provena_core::CoreError),
+}
 
 /// The operational state of a capability registration.
 ///
@@ -87,9 +100,12 @@ impl CapabilityDescriptor {
 
 /// The manifest a plugin presents to the kernel at registration time.
 ///
-/// Contains the plugin's identity, display name, and the list of capabilities
-/// it can serve. This is the runtime representation of the `plugin.toml`
-/// on-disk format — they carry the same information at different layers.
+/// Contains the plugin's identity, display name, endpoint URL, and the list
+/// of capabilities it can serve. This is the runtime representation of the
+/// `plugin.toml` on-disk format — they carry the same information at
+/// different layers.
+///
+/// Use [`PluginManifest::from_toml`] to deserialise from a `plugin.toml` file.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct PluginManifest {
     /// Unique identifier for this plugin instance.
@@ -97,6 +113,12 @@ pub struct PluginManifest {
 
     /// Human-readable name for logging and diagnostics.
     pub display_name: String,
+
+    /// The HTTP base URL the kernel uses to forward routed requests.
+    ///
+    /// Must be a valid HTTP or HTTPS URL, e.g. `http://localhost:8080`.
+    /// The kernel appends the capability-specific path when routing.
+    pub endpoint_url: String,
 
     /// The capabilities this plugin advertises to the kernel.
     pub capabilities: Vec<CapabilityDescriptor>,
@@ -107,13 +129,40 @@ impl PluginManifest {
     pub fn new(
         plugin_id: PluginId,
         display_name: impl Into<String>,
+        endpoint_url: impl Into<String>,
         capabilities: Vec<CapabilityDescriptor>,
     ) -> Self {
         Self {
             plugin_id,
             display_name: display_name.into(),
+            endpoint_url: endpoint_url.into(),
             capabilities,
         }
+    }
+
+    /// Deserialise a `PluginManifest` from a `plugin.toml` file's contents.
+    ///
+    /// The TOML format mirrors the `PluginManifest` struct directly:
+    ///
+    /// ```toml
+    /// plugin_id    = "550e8400-e29b-41d4-a716-446655440000"
+    /// display_name = "My Plugin"
+    /// endpoint_url = "http://localhost:8080"
+    ///
+    /// [[capabilities]]
+    /// name      = "ledger.append"
+    /// priority  = 0
+    /// singleton = true
+    /// state     = "Active"
+    /// ```
+    ///
+    /// # Errors
+    ///
+    /// Returns [`SdkError::TomlParse`] if the TOML is malformed or missing
+    /// required fields.
+    pub fn from_toml(toml_str: &str) -> Result<Self, SdkError> {
+        let manifest = toml::from_str::<PluginManifest>(toml_str)?;
+        Ok(manifest)
     }
 }
 
