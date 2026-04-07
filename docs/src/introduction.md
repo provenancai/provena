@@ -1,3 +1,12 @@
+<!-- TODO: Add clear "What is Provena?" thesis statement to landing page -->
+<!-- TODO: Add problem statement / motivation section — why provenance matters -->
+<!-- TODO: Add high-level architecture diagram -->
+<!-- TODO: Document core kernel primitives — Artifact, Capability, Ledger Event, Derivation, Authorization -->
+<!-- TODO: Improve ADR discoverability — index page, summaries, links from concept pages -->
+<!-- TODO: Add conceptual artifact derivation flow example -->
+<!-- TODO: Clarify kernel vs product boundary — keep minimal, OSS-appropriate framing -->
+<!-- TODO: Verify docs/book is in .gitignore -->
+
 # Provena
 
 Provena is an open source provenance microkernel written in Rust.

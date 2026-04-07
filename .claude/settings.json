@@ -12,7 +12,11 @@
       "Bash(git log*)",
       "Bash(mkdir -p*)",
       "Bash(cat*)",
-      "Bash(touch*)"
+      "Bash(touch*)",
+      "Bash(mdbook build*)",
+      "Bash(mdbook test*)",
+      "Bash(mdbook-mermaid*)",
+      "Bash(mdbook-strip-frontmatter*)"
     ],
     "deny": [
       "Bash(git commit*)",
