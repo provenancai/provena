@@ -4,7 +4,7 @@ The workspace is split into focused crates with strict dependency ordering. No c
 
 ```text
 provena/
-├── provena-core/      # Domain identifiers and provenance types — no IO, no async
+├── provena-core/      # Domain identifiers and provenance types - no IO, no async
 ├── provena-sdk/       # Plugin manifest and trait surface
 ├── provena-kernel/    # Capability registry, routing, and health
 ├── provena-ledger/    # Append-only ledger interfaces and in-memory scaffold
@@ -22,7 +22,7 @@ The plugin contract surface. Defines the `Plugin` trait, `PluginManifest`, and `
 
 ## provena-kernel
 
-The microkernel. Owns the capability registry, priority-ordered routing, and plugin health tracking. Does not contain business logic. Does not know what capabilities mean — only that they exist and where they route.
+The microkernel. Owns the capability registry, priority-ordered routing, and plugin health tracking. Does not contain business logic. Does not know what capabilities mean - only that they exist and where they route.
 
 ## provena-ledger
 

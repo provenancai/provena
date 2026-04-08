@@ -25,7 +25,7 @@ sequenceDiagram
 
 ## Human provenance class
 
-All storage migrations carry the `Human` provenance class. Human-class events require named human authorization. The kernel will never initiate a migration — only respond to one that has been explicitly authorized.
+All storage migrations carry the `Human` provenance class. Human-class events require named human authorization. The kernel will never initiate a migration - only respond to one that has been explicitly authorized.
 
 This means:
 - No automatic data tiering
@@ -41,4 +41,4 @@ A migration ledger entry records:
 - The provenance class (`Human`)
 - A timestamp
 
-The ledger is append-only. The migration record cannot be altered after the fact — only followed by an addendum if a correction is required.
+The ledger is append-only. The migration record cannot be altered after the fact - only followed by an addendum if a correction is required.

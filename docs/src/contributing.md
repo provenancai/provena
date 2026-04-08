@@ -5,7 +5,7 @@ Contributions to Provena are welcome.
 ## Before you start
 
 - Open an issue or discussion before writing code for anything non-trivial.
-- The scope of this repository is the public platform surface only — domain types, the plugin SDK, the kernel, ledger interfaces, and the API entrypoint. Commercial product logic, enterprise integrations, and private policy engines are out of scope.
+- The scope of this repository is the public platform surface only - domain types, the plugin SDK, the kernel, ledger interfaces, and the API entrypoint. Commercial product logic, enterprise integrations, and private policy engines are out of scope.
 
 ## Development setup
 
@@ -32,9 +32,9 @@ cargo run -p prv
 
 - Rust edition 2021, async runtime Tokio, HTTP framework Axum.
 - `thiserror` for library crates, `anyhow` for binaries.
-- No `unwrap()` or `expect()` in library code — all errors must be handled explicitly.
+- No `unwrap()` or `expect()` in library code - all errors must be handled explicitly.
 - Newtypes for all domain identifiers.
-- Static binaries only — musl target for release builds.
+- Static binaries only - musl target for release builds.
 
 ## What not to do
 

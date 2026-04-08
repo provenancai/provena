@@ -2,7 +2,7 @@
 
 This section documents the architectural decisions made during the design and development of Provena.
 
-Each ADR records the context, the decision, and the consequences. ADRs are immutable once accepted — if a decision changes, a new ADR supersedes the old one rather than modifying it.
+Each ADR records the context, the decision, and the consequences. ADRs are immutable once accepted - if a decision changes, a new ADR supersedes the old one rather than modifying it.
 
 ## Index
 
