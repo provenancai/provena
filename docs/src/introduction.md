@@ -10,7 +10,7 @@ Provena is a provenance engine for business artifacts - invoices, emails, contra
 
 These artifacts already exist in every organisation. The problem is that they are scattered across systems, disconnected from each other, and difficult to trace. When something needs to be verified - a financial number, a decision, a compliance record - the evidence has to be reconstructed manually, from memory and fragments.
 
-Provena links those artifacts into verifiable chains of evidence: a connected graph where every node is a real business record and every edge is a deterministic, auditable relationship.
+Provena links those artifacts into verifiable chains of evidence: a connected graph where every node is a real business record and every edge is a traceable, auditable relationship.
 
 ## The problem
 
@@ -37,7 +37,7 @@ Think of it as Git for operational business records - the same append-only, inte
 
 ---
 
-The Provena kernel defines the protocol primitives required to represent these relationships in a deterministic and verifiable way.
+The Provena kernel defines the protocol primitives required to represent these relationships in a traceable and verifiable way.
 
 ## Provena
 
