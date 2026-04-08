@@ -4,11 +4,11 @@ Routing in Provena is capability-based, not plugin-addressed. Clients request a 
 
 ## Priority ordering
 
-Each capability maps to a priority-ordered list of healthy plugin endpoints. Lower priority number means higher authority — this mirrors the DNS delegation model where 0 is highest priority.
+Each capability maps to a priority-ordered list of healthy plugin endpoints. Lower priority number means higher authority - this mirrors the DNS delegation model where 0 is highest priority.
 
 ## Singleton capabilities
 
-Some capabilities are singletons — only one plugin may register them. Storage backends are the canonical example. The kernel rejects duplicate registrations of a singleton capability as a configuration error, not a routing choice.
+Some capabilities are singletons - only one plugin may register them. Storage backends are the canonical example. The kernel rejects duplicate registrations of a singleton capability as a configuration error, not a routing choice.
 
 Connectivity loss on a singleton capability is a hard stop (503). The kernel never silently reroutes singleton traffic.
 

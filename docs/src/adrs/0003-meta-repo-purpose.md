@@ -10,7 +10,7 @@ affects_repos: ["provena-workspace"]
 
 ## Context
 
-Local development tooling and workspace state need a home that does not distort the code architecture. At the same time, all architectural decisions that need to survive must live in `provena` — not in a working repo.
+Local development tooling and workspace state need a home that does not distort the code architecture. At the same time, all architectural decisions that need to survive must live in `provena` - not in a working repo.
 
 ## Decision
 
@@ -28,7 +28,7 @@ It must not contain:
 - shared Rust code
 - public platform contracts that belong in `provena`
 - commercial product implementation that belongs in `provenancai`
-- ADRs or architectural decisions — those belong in `provena`
+- ADRs or architectural decisions - those belong in `provena`
 
 ## Consequences
 

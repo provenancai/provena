@@ -4,7 +4,7 @@ Plugins are out-of-process. Each plugin is a separate binary or container that c
 
 ## Manifests
 
-Plugins declare their capabilities via a `plugin.toml` manifest on disk. This is the authoritative source of truth. The kernel discovers plugins by reading these manifests — there is no hardcoded configuration.
+Plugins declare their capabilities via a `plugin.toml` manifest on disk. This is the authoritative source of truth. The kernel discovers plugins by reading these manifests - there is no hardcoded configuration.
 
 `plugin.toml` is deserialised at runtime into `PluginManifest`. The on-disk format and the in-memory type are the same data at different layers of the system.
 
@@ -12,9 +12,9 @@ Plugins declare their capabilities via a `plugin.toml` manifest on disk. This is
 
 Third-party plugin authors use the `provena-sdk` crate. It defines:
 
-- `Plugin` — the trait a plugin binary implements
-- `PluginManifest` — the capabilities a plugin declares
-- `CapabilityDescriptor` — a single capability and its metadata
+- `Plugin` - the trait a plugin binary implements
+- `PluginManifest` - the capabilities a plugin declares
+- `CapabilityDescriptor` - a single capability and its metadata
 - Provider traits for specific capability categories
 
 No dependency on `provena-kernel` is required to build a plugin.

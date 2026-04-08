@@ -14,7 +14,7 @@ The Provena ecosystem needs a clean separation between the public open source pl
 
 ## Decision
 
-- `provena` is the public OSS repository. It is self-contained and authoritative — any architectural decision affecting the kernel belongs here.
+- `provena` is the public OSS repository. It is self-contained and authoritative - any architectural decision affecting the kernel belongs here.
 - `provenancai` is a private repository for commercial product code built on top of Provena.
 - `provena-workspace` is a private ephemeral working repo for local workspace state and developer context. It is not authoritative and nothing in it needs to survive independently.
 
@@ -22,4 +22,4 @@ The Provena ecosystem needs a clean separation between the public open source pl
 
 - The public repository stays focused, publishable, and self-explanatory to any external contributor.
 - Private product logic is not mixed into the OSS platform repository.
-- `provena-workspace` is treated as disposable — cross-repo architectural decisions that need to survive belong in `provena`, not the workspace.
+- `provena-workspace` is treated as disposable - cross-repo architectural decisions that need to survive belong in `provena`, not the workspace.
