@@ -9,9 +9,9 @@ flowchart TD
     Client["Client (Postman / prv CLI)"] --> API[provena-api]
     API --> Kernel[provena-kernel]
     Kernel --> Ledger[Ledger plugin]
-    Kernel --> StorageStd["Storage plugin — standard"]
-    Kernel --> StorageSens["Storage plugin — sensitive"]
-    Kernel --> StorageArc["Storage plugin — archival"]
+    Kernel --> StorageStd["Storage plugin - standard"]
+    Kernel --> StorageSens["Storage plugin - sensitive"]
+    Kernel --> StorageArc["Storage plugin - archival"]
 ```
 
 ## Provenance classes
